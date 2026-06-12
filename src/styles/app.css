@@ -148,7 +148,7 @@ main {
   flex-wrap: wrap;
 }
 
-.btn {
+/* .btn {
   font-family: inherit;
   font-size: 13px;
   letter-spacing: 1px;
@@ -161,8 +161,29 @@ main {
   cursor: pointer;
   transition: transform 0.08s ease, background 0.15s ease, opacity 0.15s ease;
   white-space: nowrap;
-}
+} */
+.btn {
+  font-family: inherit;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 12px 22px;
+  border: 2px solid var(--ink);
+  border-radius: 3px;
+  background: var(--ink);
+  color: var(--paper);
+  cursor: pointer;
+  transition: transform 0.08s ease, background 0.15s ease, opacity 0.15s ease;
 
+  white-space: normal;
+  overflow-wrap: anywhere;   /* en vez de word-break: break-word */
+  overflow: hidden;          /* seguro extra */
+  line-height: 1.2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
 .btn:active {
   transform: scale(0.97);
 }
@@ -421,31 +442,10 @@ footer {
 }
 
 @media (max-width: 600px) {
-  main {
-    padding: 10px;
-  }
-
-  .toolbar-row {
-    justify-content: space-between;
-  }
-
   .btn {
     font-size: 11px;
-    padding: 10px 14px;
-    flex: 1;
-    min-width: 0;
-  }
-
-  .footer-actions .btn {
-    flex: 1;
-  }
-
-  .stage-scroll {
-    margin: 0 10px 12px;
-    max-height: 68vh;
-  }
-
-  .zoom-controls {
-    padding: 0 10px 12px;
+    padding: 10px 6px;
+    flex: 1 1 calc(50% - 8px);
+    min-width: 0;   /* <- clave: permite que el flex-basis gane sin overflow */
   }
 }
