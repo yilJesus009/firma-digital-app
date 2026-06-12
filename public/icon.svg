@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" rx="96" fill="#1a2e22"/>
-  <circle cx="256" cy="256" r="178" fill="none" stroke="#b08d3e" stroke-width="18"/>
-  <circle cx="256" cy="256" r="132" fill="none" stroke="#f6f1e7" stroke-width="8" stroke-dasharray="18 16"/>
-  <text x="256" y="246" text-anchor="middle" font-family="Georgia, serif" font-size="58" font-weight="700" fill="#f6f1e7">NE</text>
-  <text x="256" y="312" text-anchor="middle" font-family="Courier New, monospace" font-size="28" fill="#b08d3e">FIRMA</text>
-</svg>
