@@ -1,0 +1,19 @@
+{
+  "name": "Notario Express",
+  "short_name": "Notario",
+  "description": "Firma, sella y exporta documentos localmente como PDF.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#1a2e22",
+  "theme_color": "#1a2e22",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
