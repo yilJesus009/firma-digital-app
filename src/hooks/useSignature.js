@@ -1,4 +1,14 @@
 import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+
+const [hasSignature, setHasSignature] = useState(false);
+
+const clearSignature = useCallback(() => {
+  const canvas = canvasRef.current;
+  if (!canvas) return;
+  canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+  setHasSignature(false);
+}, [canvasRef]);
 
 function getEventPoint(event, canvas) {
   const rect = canvas.getBoundingClientRect();
@@ -71,6 +81,8 @@ export function useSignature(canvasRef, stageRef, isActive) {
       context.lineTo(point.x, point.y);
       context.stroke();
       lastPointRef.current = point;
+      setHasSignature(true);
+      lastPointRef.current = point;
     }
 
     function endDraw() {
@@ -98,5 +110,5 @@ export function useSignature(canvasRef, stageRef, isActive) {
     };
   }, [canvasRef, isActive, resizeCanvas]);
 
-  return { clearSignature, resizeCanvas };
+  return { clearSignature, resizeCanvas, hasSignature };
 }

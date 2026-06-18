@@ -403,6 +403,32 @@ input[type='file'] {
   padding: 0;
 }
 
+.stamp .resize-stamp {
+  position: absolute;
+  bottom: -8px;
+  right: -8px;
+  width: 22px;
+  height: 22px;
+  background: var(--accent);
+  border: 2px solid var(--paper);
+  border-radius: 4px;
+  cursor: nwse-resize;
+  touch-action: none;
+}
+
+.stamp .resize-stamp::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--paper);
+  border-bottom: 2px solid var(--paper);
+  transform: translate(-60%, -60%);
+}
+
+
 .mode-badge {
   position: absolute;
   top: 10px;

@@ -15,6 +15,7 @@ function createId() {
 }
 
 export default function App() {
+  const { clearSignature, resizeCanvas, hasSignature } = useSignature(signCanvasRef, stageRef, signMode);
   const stageRef = useRef(null);
   const signCanvasRef = useRef(null);
   const [signMode, setSignMode] = useState(false);
@@ -23,7 +24,6 @@ export default function App() {
   const [installPrompt, setInstallPrompt] = useState(null);
   const { documentFile, status, error, loadDocument, resetDocument } = useCanvas();
   const { zoom, zoomIn, zoomOut, resetZoom, setZoom } = useZoom();
-  const { clearSignature, resizeCanvas } = useSignature(signCanvasRef, stageRef, signMode);
 
   useEffect(() => {
     const onBeforeInstallPrompt = event => {
@@ -99,7 +99,13 @@ export default function App() {
 
   async function exportPdf() {
     if (!documentFile || !stageRef.current || !signCanvasRef.current) return;
-    setIsExporting(true);
+
+  if (!hasSignature) {
+    window.alert('Debe firmar el documento antes de descargarlo. Active "Firmar" y dibuje su firma.');
+    return;
+  }
+
+  setIsExporting(true);
 
     try {
       await exportSignedPdf({
@@ -169,12 +175,16 @@ export default function App() {
               onImageLoad={resizeCanvas}
               onStampMove={updateStamp}
               onStampRemove={removeStamp}
+              onStampMove={updateStamp}
+              onStampResize={updateStamp}
+              onStampRemove={removeStamp}
             />
 
             <div className="footer-actions">
-              <button className="btn btn-gold" disabled={isExporting} onClick={exportPdf}>
-                {isExporting ? 'Generando PDF...' : 'Descargar PDF firmado'}
-              </button>
+              <button className="btn btn-gold" disabled={isExporting || !hasSignature} onClick={exportPdf}>
+                 {isExporting ? 'Generando PDF...' : 'Descargar PDF firmado'}
+               </button>
+                 {!hasSignature && <p className="hint" style={{ width: '100%', textAlign: 'right' }}>Firme el documento para habilitar la descarga.</p>}
             </div>
           </section>
         )}
